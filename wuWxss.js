@@ -33,8 +33,12 @@ function doWxss(dir, cb) {
         else ++importCnt[id];
       }
       if (typeof data === "number") return addStat(data);
-      for (let content of data)
-        if (typeof content === "object" && content[0] == 2) addStat(content[1]);
+      // @todo 全局 样式错误， 要调整 __COMMON_STYLESHEETS__ 逻辑
+      if(data) {
+        for (let content of data) {
+          if (typeof content === "object" && content[0] == 2) addStat(content[1]);
+        }
+      }
     }
 
     function makeup(data) {
